@@ -1,11 +1,12 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workers/login/Login.dart';
 
-
+import 'Pages/firstpage.dart';
+import 'Splashscreen/splashscreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,22 +24,38 @@ Future<void> main() async {
     await Firebase.initializeApp();
   }
 
-
-  runApp(const Myapp());
+  runApp(const MyApp());
+  _checkLoginStatus();
 }
-class Myapp extends StatefulWidget {
-  const Myapp({super.key});
+Future<void> _checkLoginStatus() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  bool isLandingPageFirstTime = prefs.getBool('isLandingPageFirstTime') ?? true;
+
+
+    if (isLoggedIn) {
+
+      Get.to(ProductFormScreen());
+    }
+
+    else {
+      Get.to(LoginScreen());
+    }
+  }
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<Myapp> createState() => _MyappState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyappState extends State<Myapp> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }

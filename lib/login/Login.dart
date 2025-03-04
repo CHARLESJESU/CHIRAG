@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           errorMessage = '';
         });
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => Firstpage()),
+          MaterialPageRoute(builder: (context) => ProductFormScreen()),
         );
       } else {
         setState(() {
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   const Text(
                     "Welcome Back!",
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF1A2B3C)),
                   ),
                   const SizedBox(height: 8),
                   const Text(

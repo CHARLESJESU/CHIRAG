@@ -193,7 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   _buildTextField(
                     controller: passwordController,
-                    hintText: 'Enter your password',
+                    hintText: 'Create your password',
                     icon: Icons.lock,
                     isPass: true,
                   ),
